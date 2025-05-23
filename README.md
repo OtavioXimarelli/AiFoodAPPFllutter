@@ -7,16 +7,16 @@
 
 ## 📝 Sobre o Projeto
 
-O **AI Food App** é um aplicativo Flutter que oferece recomendações de alimentos personalizadas com base em inteligência artificial. Ele se conecta a um backend Java (Spring Boot) para sugerir receitas, analisar perfis nutricionais e gerenciar alimentos disponíveis, proporcionando uma experiência multiplataforma (Android, iOS, Web e Desktop).
+O **AI Food App** é um aplicativo Flutter multiplataforma que oferece recomendações de alimentos e receitas personalizadas com base em inteligência artificial. Ele se conecta a um backend Java (Spring Boot), que é totalmente conteinerizado com Docker e pode ser encontrado em: [AiFoodApp backend repository](https://github.com/OtavioXimarelli/AiFoodApp/).
 
-O backend pode ser encontrado em: [AiFoodApp backend repository](https://github.com/OtavioXimarelli/AiFoodApp).
+O backend expõe uma API REST para cadastro, listagem, atualização e remoção de alimentos, além de geração e análise nutricional de receitas usando IA.
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **Flutter**: Framework para desenvolvimento multiplataforma
 - **Dart**: Linguagem de programação principal do Flutter
 - **RESTful API**: Comunicação com o backend Java
-- **Provider / Riverpod**: Gerenciamento de estado (dependendo da implementação)
+- **Provider / Riverpod**: Gerenciamento de estado
 - **table_calendar**: Exibição de calendários
 - **font_awesome_flutter**: Ícones modernos e personalizáveis
 
@@ -41,27 +41,33 @@ O projeto segue uma arquitetura modular:
 
 - Interface intuitiva para recomendações de alimentos
 - Integração com backend AI para sugestões personalizadas de receitas
-- Listagem, cadastro e gerenciamento de alimentos
+- Listagem, cadastro, atualização e remoção de alimentos
 - Exibição de receitas detalhadas e informações nutricionais
 - Suporte multiplataforma (Android, iOS, Web, Desktop)
 
 ## 🔌 Integração com o Backend
 
-O app se comunica via REST com o backend Java, consumindo endpoints como:
+O backend é uma aplicação Java Spring Boot conteinerizada via Docker, responsável por toda a lógica de dados e IA. Os principais endpoints disponíveis atualmente são:
 
-- `POST /api/foods/create`: Cadastrar alimento
-- `GET /api/foods/list`: Listar alimentos
-- `GET /api/recipes/gen`: Gerar receita baseada nos alimentos disponíveis
-- `GET /api/recipes/analyze/{id}`: Analisar perfil nutricional de uma receita
+### Food Items
+- `POST /api/foods/create`: Cria um novo alimento
+- `GET /api/foods/list`: Lista todos os alimentos
+- `GET /api/foods/list/{id}`: Busca um alimento pelo ID
+- `PUT /api/foods/update`: Atualiza um alimento existente
+- `DELETE /api/foods/delete/{id}`: Remove um alimento
 
-Consulte a [documentação do backend](https://github.com/OtavioXimarelli/AiFoodApp) para detalhes dos endpoints.
+### Recipes
+- `GET /api/recipes/gen`: Gera uma nova receita com base nos alimentos disponíveis
+- `GET /api/recipes/analyze/{id}`: Analisa o perfil nutricional de uma receita
+
+Consulte a [documentação do backend](https://github.com/OtavioXimarelli/AiFoodApp) para detalhes de configuração e execução.
 
 ## 💻 Como Executar o Projeto
 
 ### Pré-requisitos
 
 - [Flutter SDK](https://docs.flutter.dev/get-started/install)
-- Backend rodando conforme instruções do [repositório backend](https://github.com/OtavioXimarelli/AiFoodApp)
+- Backend rodando conforme instruções do [repositório backend](https://github.com/OtavioXimarelli/AiFoodApp) (Docker recomendado)
 
 ### Instalação
 
@@ -86,31 +92,37 @@ Consulte a [documentação do backend](https://github.com/OtavioXimarelli/AiFood
 
 ### Configuração do Backend
 
-Siga as instruções do [repositório backend](https://github.com/OtavioXimarelli/AiFoodApp) para subir o servidor Java.
+Siga as instruções do [repositório backend](https://github.com/OtavioXimarelli/AiFoodApp) para subir o servidor Java com Docker.
 
 ## 🧪 Status Atual do Projeto
 
-O projeto está em desenvolvimento, com as seguintes funcionalidades já implementadas:
+O projeto encontra-se em desenvolvimento ativo. Funcionalidades já implementadas:
 
 ✅ Interface básica de recomendações  
 ✅ Integração inicial com backend  
-✅ Listagem e cadastro de alimentos  
+✅ Listagem, cadastro, atualização e remoção de alimentos  
 ✅ Exibição de receitas e informações nutricionais
 
 **Em desenvolvimento:**  
 🔄 Personalização avançada de recomendações  
 🔄 Histórico e favoritos  
 🔄 Melhorias na experiência do usuário  
-🔄 Testes automatizados
+🔄 Testes automatizados  
+🔄 Filtros para restrições alimentares e preferências  
+🔄 Autenticação e perfis de usuário  
+🔄 Internacionalização (i18n)  
+🔄 Otimização da interface para web e desktop  
+🔄 Deploy automatizado (CI/CD)
 
 ## 📋 Próximos Passos
 
-- Implementação de autenticação e perfis de usuário
-- Filtros para restrições alimentares e preferências
-- Otimização da interface para web e desktop
-- Expansão dos testes unitários e de integração
-- Internacionalização (i18n)
-- Deploy automatizado (CI/CD)
+- Finalizar sistema de favoritos e histórico de receitas
+- Implementar autenticação e perfis de usuário
+- Adicionar filtros para restrições alimentares (vegetariano, sem glúten, etc.)
+- Melhorar personalização das recomendações com base no histórico
+- Expandir testes unitários e de integração
+- Internacionalização da interface
+- Automatizar deploy e integração contínua
 
 ## 👥 Contribuições
 
